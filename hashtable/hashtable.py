@@ -20,9 +20,9 @@ class HashTable:
     Implement this.
     """
 
-    def __init__(self, capacity):
-        # Your code here
-
+    def __init__(self, capacity = MIN_CAPACITY):
+        self.capacity = capacity
+        self.storage = [None for i in range(capacity)]
 
     def get_num_slots(self):
         """
@@ -34,7 +34,7 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        return self.capacity
 
 
     def get_load_factor(self):
@@ -54,7 +54,7 @@ class HashTable:
         """
 
         # Your code here
-
+        pass
 
     def djb2(self, key):
         """
@@ -62,7 +62,10 @@ class HashTable:
 
         Implement this, and/or FNV-1.
         """
-        # Your code here
+        hash = 5381
+        for c in key:
+            hash = ((hash * 33) + ord(c)) % 0x100000000
+        return hash
 
 
     def hash_index(self, key):
@@ -81,7 +84,7 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        self.storage[self.djb2(key)].append((key, value))
 
 
     def delete(self, key):
@@ -103,7 +106,11 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        for k,v in self.storage[self.djb2(key)]:
+            if k == key:
+                return v
+        return None
+        
 
 
     def resize(self, new_capacity):
