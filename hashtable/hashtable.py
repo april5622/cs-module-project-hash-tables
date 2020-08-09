@@ -63,6 +63,7 @@ class HashTable:
         Implement this, and/or FNV-1.
         """
         hash = 5381
+    
         for c in key:
             hash = ((hash * 33) + ord(c)) % 0x100000000
         return hash
@@ -84,7 +85,7 @@ class HashTable:
 
         Implement this.
         """
-        self.storage[self.djb2(key)].append((key, value))
+        self.storage[self.hash_index(key)] = HashTableEntry(key, value)
 
 
     def delete(self, key):
@@ -95,7 +96,10 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        if self.storage[self.hash_index(key)] is not None:
+            self.storage[self.hash_index(key)] = None
+        else: 
+            return None
 
 
     def get(self, key):
@@ -106,10 +110,10 @@ class HashTable:
 
         Implement this.
         """
-        for k,v in self.storage[self.djb2(key)]:
-            if k == key:
-                return v
-        return None
+        if self.storage[self.hash_index(key)] is not None:
+            return self.storage[self.hash_index(key)].value
+        else:
+            return None
         
 
 
