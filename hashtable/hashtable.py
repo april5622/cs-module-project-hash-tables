@@ -35,7 +35,7 @@ class HashTable:
 
         Implement this.
         """
-        return len(self.capacity)
+        return self.capacity
 
 
     def get_load_factor(self):
@@ -188,8 +188,9 @@ class HashTable:
         Implement this.
         """
         # Make a new array thats DOUBLE the current size
-        newArr = [None] * new_capacity
         oldArr = self.storage
+        newArr = [None] * new_capacity
+        
         self.storage = newArr
         self.capacity = len(newArr)
 
@@ -199,7 +200,7 @@ class HashTable:
             if node is not None:
                 current_node = node
                 # Insert the items into their new locations
-                while current_node is not None:
+                while current_node:
                     self.put(current_node.key, current_node.value)
                     current_node = current_node.next
 
