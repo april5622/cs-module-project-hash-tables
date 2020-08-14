@@ -101,7 +101,6 @@ class HashTable:
             last_node = None
             while current_node:
                 # IF the key already exists in the linked list
-                    # Replace the value
                 if current_node.key == key:
                     # find current key, replace value
                     current_node.value = value
@@ -111,8 +110,8 @@ class HashTable:
             # if we get this far, we didnt find an current key
             # so we just append the enw node to the end of the storage
             last_node.next = new_node
-            # Else
-                # Add new HashTable Entry to the head of linked list​
+        # Else
+            # Add new HashTable Entry to the head of linked list​
         else:
                 self.storage[bucket_index] = new_node
 
@@ -139,6 +138,7 @@ class HashTable:
         if current_node:
             last_node = None
             while current_node:
+                # finding the matching key
                 if current_node.key == key:
                     if last_node:
                         last_node.next = current_node.next
