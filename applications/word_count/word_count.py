@@ -1,5 +1,21 @@
 def word_count(s):
-    # Your code here
+    wordCount = {}
+
+    bannedCharacters = {":": None, ";": None, ",": None, ".": None, "-": None, "+": None,  "=": None, "/": None, "\\": None,  "\"": None,  "|": None, "[": None, "]": None, "{": None, "}": None,  "(": None, ")": None, "*": None, "^": None, "&": None}
+    
+    s = s.lower().strip()
+
+    for letter in s:
+        if letter in bannedCharacters:
+            s = s.replace(letter, '')
+    s = s.split()
+
+    for word in s:
+        if word not in wordCount:
+            wordCount[word] = 1
+        else:
+            wordCount[word] += 1
+    return wordCount
 
 
 

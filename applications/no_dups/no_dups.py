@@ -1,5 +1,12 @@
 def no_dups(s):
-    # Your code here
+    nodupsList = []
+    seen = set()
+    for word in s.split():
+        if word not in seen:
+            nodupsList.append(word)
+            seen.add(word)
+    return ' '.join(nodupsList)   
+
 
 
 
